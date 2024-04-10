@@ -69,8 +69,8 @@ console.log('cf.js');
 
         // Helper function to transform a URL to absolute and add it to the set, excluding data URLs
         function addUrl(url) {
-            if (!isCached(url)) return; 
-            if (!isValidUrl(url)) return; 
+            if (!isCached(url)) return;
+            if (!isValidUrl(url)) return;
             const absoluteUrl = new URL(url, window.location.origin).href;
             urls.push(absoluteUrl);
         }
@@ -86,8 +86,8 @@ console.log('cf.js');
 
         // Helper function to determine if a URL is not a data URL
         function isValidUrl(url) {
-            if(!isLocal(url)) return;
-            return url.startsWith('http') ||  url.startsWith('/') ||  url.startsWith('://');
+            if (!isLocal(url)) return;
+            return url.startsWith('http') || url.startsWith('/') || url.startsWith('://');
         }
 
         // Helper function to determine if a URL may be cached
@@ -99,11 +99,20 @@ console.log('cf.js');
             return true;
         }
 
-        // Helper function to determine if a URL is local and not a data URL
+        // Helper function to determine if a URL's top domain matches the current top domain
         function isLocal(url) {
             try {
-                const { hostname } = new URL(url, window.location.origin);
-                return window.location.hostname === hostname;
+                const getTopDomain = (hostname) => {
+                    // Split hostname into parts and return the top domain
+                    const parts = hostname.split('.');
+                    return parts.slice(-2).join('.'); // Assumes second-level domain names (e.g., example.com)
+                };
+
+                const urlHostname = new URL(url, window.location.origin).hostname;
+                const currentHostname = window.location.hostname;
+
+                // Compare top domains
+                return getTopDomain(urlHostname) === getTopDomain(currentHostname);
             } catch (error) {
                 console.error("Error checking URL:", url, error);
                 return false;

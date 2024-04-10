@@ -1,10 +1,17 @@
 <?php
-function cloudflare_get_cached($selector) {
-    $keys = redis_get_all($selector, 'cf');
+function cloudflare_get_cached($selectors) {
 
-    return array_map(function($key) {
-        return preg_replace('/^cf:/', '', $key);
-    }, $keys);
+    $selectors = array_map('trim',explode(',',$selectors));
+
+    $out = [];
+    foreach($selectors as $selector)  {
+        $keys = redis_get_all($selector, 'cf');
+
+        foreach($keys as $key){
+            $out[] = preg_replace('/^cf:/', '', $key);
+        }
+    }
+    return $out;
 }
 /**
  * Purge URLs from Cloudflare cache in batches of 30.
