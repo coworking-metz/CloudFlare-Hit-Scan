@@ -1,0 +1,4 @@
+<?php
+
+define('CF_ZONE_ID', '');
+define('CF_API_KEY', '');

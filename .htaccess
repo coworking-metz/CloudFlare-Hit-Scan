@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^hit$  hit.php [L,QSA]
+RewriteRule ^purge$  purge.php [L,QSA]
