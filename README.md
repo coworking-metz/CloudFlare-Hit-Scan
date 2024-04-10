@@ -28,7 +28,7 @@ https://cloudflare.coworking-metz.fr/hit?url=https://photos.coworking-metz.fr/po
 L'ajout d'un paramètre facultatif booléen `verbose` permet de voir la liste des urls effectivement inventoriées (1)
 
 ### `/purge`
- Le endpoint `/purge` permet de purger le cache d'une sélection d'urls. Pour sélectionner les urls, il faut envoyer une chaîne de caaractère `selector`. Toutes les pages dont l'url contient le mot contenu dans `selector` seront purgées (Ne pas inclure de `*` ou autre regexp dans selector).
+ Le endpoint `/purge` permet de purger le cache d'une sélection d'urls. Pour sélectionner les urls, il faut envoyer une chaîne de caractère `selector`. Toutes les pages dont l'url contient le mot contenu dans `selector` seront purgées (Ne pas inclure de `*` ou autre regexp dans selector).
  On peut combiner plusieurs critères différents dans `selector` en séparant chaque terme par une virugle `,`.
  L'ajout d'un paramètre facultatif booléen `verbose` permet de voir la liste des urls purgées
 
@@ -45,6 +45,9 @@ https://cloudflare.coworking-metz.fr/purge?selector=pages.coworking-metz.fr&verb
 https://cloudflare.coworking-metz.fr/purge?selector=pages.coworking-metz.fr,www.coworking-metz.fr&verbose=true
 ```
 
+### `/list`
+ Le endpoint `/list` n'effectue aucune action. Il permet simplement de visualiser les urls inventoriées pour un selecteur donné. Pour sélectionner les urls, il faut envoyer une chaîne de caractère `selector`. Toutes les pages dont l'url contient le mot contenu dans `selector` seront listées (Ne pas inclure de `*` ou autre regexp dans selector).
+ On peut combiner plusieurs critères différents dans `selector` en séparant chaque terme par une virugle `,`.
 _
 
-1: certaines URL ne sont pas censées être mises en cache, comme celle contenant une extension `.php` ou un query param `nocache` par exemple. Le endpoint `/hit` va donc les ignorer et ne pas les inventorier.
+1: certaines URL ne sont pas censées être mises en cache par CloudFlare, comme celle contenant une extension `.php` ou un query param `nocache` par exemple. Le endpoint `/hit` va donc les ignorer et ne pas les inventorier.
