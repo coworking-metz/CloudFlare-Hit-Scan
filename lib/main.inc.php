@@ -4,7 +4,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 if($data) {
     $_POST = $data;
 }
-$verbose = isset($_GET['verbose']);
+$verbose = isset($_GET['verbose']) || isset($_POST['verbose']);
 
 
 if(isset($_GET['debug'])) {

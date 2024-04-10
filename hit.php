@@ -29,7 +29,7 @@ _log('hit',count($payloads),array_column($payloads, 'url'));
 
 if($verbose) {
     header('Content-type: application/json');
-    echo json_encode($payloads);
+    echo json_encode(array_column($payloads, 'url'));
 } else {
     http_response_code(204);
 }
