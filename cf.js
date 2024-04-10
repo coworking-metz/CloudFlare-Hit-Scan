@@ -11,16 +11,15 @@ console.log('cf.js');
         console.log('cf.js - scan');
         fetch(current, { cache: "force-cache" }).then(async (response) => {
             // Accessing specific header
-            console.log(response.headers.get('Content-Type'));
+            // console.log(response.headers.get('Content-Type'));
 
             const cfCacheStatus = response.headers.get('cf-cache-status');
             const statuses = ['HIT', 'MISS', 'EXPIRED'];
 
-            // console.log({ cfCacheStatus })
             if (statuses.includes(cfCacheStatus)) {
-                console.log('cf.js - hit');
+                console.log('cf.js - '+cfCacheStatus);
                 const urls = await findStaticAssetsUrls();
-                console.log({ urls });
+                // console.log({ urls });
                 urls.push(current);
                 fetch('https://cloudflare.coworking-metz.fr/hit', {
                     method: 'POST',
@@ -31,7 +30,6 @@ console.log('cf.js');
                     body: JSON.stringify({ urls })
                 });
 
-                // fetch('https://cloudflare.coworking-metz.fr/hit?url=' + current , {cache: "no-store"})
             } else {
                 console.log('cf.js - nothing to do');
             }

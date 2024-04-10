@@ -6,6 +6,7 @@ function erreur($code) {
 }
 
 function isValidUrl($url) {
+    if(strstr($url, 'accessToken')) return false;
     if(strstr($url, 'nocache')) return false;
     if(strstr($url, 'debug')) return false;
     return true;
