@@ -10,10 +10,10 @@ gulp.task('scripts', function() {
     .pipe(concat('all.js'))
     .pipe(tap(function(file) {
         // Wrap the file contents in an IIFE
-        file.contents = Buffer.from(`(function() {\n${file.contents.toString()}\n})();`);
+        file.contents = Buffer.from(`(() => {\n${file.contents.toString()}\n})();`);
     }))
     .pipe(concat('cf.js')) // Rename the file to cf.js
-    .pipe(gulp.dest('./dist/')); // Output to the dist folder
-    
+    .pipe(gulp.dest('./dist/'));
+
     exports.default = scripts;
 });
