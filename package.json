@@ -1,0 +1,29 @@
+{
+  "name": "cloudflare",
+  "version": "1.0.0",
+  "description": "Nativement, CloudFalre ne permet pas une purge sur une sélection d'urls via un sélecteur de type '*mot*'.",
+  "main": "cf.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build" : "gulp scripts && uglifyjs ./dist/cf.js -o ./dist/cf.min.js && curl -X GET 'https://cloudflare.coworking-metz.fr/purge?selector=cloudflare.coworking-metz.fr'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coworking-metz/CloudFlare-Hit-Scan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coworking-metz/CloudFlare-Hit-Scan/issues"
+  },
+  "homepage": "https://github.com/coworking-metz/CloudFlare-Hit-Scan#readme",
+  "dependencies": {
+    "gulp-concat": "^2.6.1"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-tap": "^2.0.0"
+  }
+}

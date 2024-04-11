@@ -1,6 +1,9 @@
 RewriteEngine on
 RewriteBase /
 
+RewriteRule ^cf.js$  dist/cf.min.js [L,QSA]
+RewriteRule ^cf.js$  dist/cf.js [L,QSA]
+
 RewriteRule ^hit$  hit.php [L,QSA]
 RewriteRule ^purge$  purge.php [L,QSA]
 RewriteRule ^list$  list.php [L,QSA]
