@@ -153,3 +153,15 @@ function attendre(id, code, delay = 500) {
     // });
     attendreList[id] = setTimeout(code, delay);
 }
+
+/**
+ * Remove specific query parameters from a URL.
+ * @param {string} url - The URL from which to remove the parameters.
+ * @param {Array<string>} paramsToRemove - Array of parameter names to remove.
+ * @returns {string} The URL after removing the specified parameters.
+ */
+function removeQueryParams(url, paramsToRemove) {
+    const urlObj = new URL(url);
+    paramsToRemove.forEach(param => urlObj.searchParams.delete(param));
+    return urlObj.search ? urlObj.toString() : urlObj.href.split('?')[0];
+}

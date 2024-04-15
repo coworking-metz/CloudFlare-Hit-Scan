@@ -11,13 +11,14 @@ function doScan() {
         // console.log(response.headers.get('Content-Type'));
 
         const cfCacheStatus = response.headers.get('cf-cache-status');
-        const statuses = ['HIT', 'MISS', 'EXPIRED'];
+        // const statuses = ['HIT', 'MISS', 'EXPIRED'];
 
-        if (statuses.includes(cfCacheStatus)) {
+        // if (statuses.includes(cfCacheStatus)) {
             console.log('cf.js - ' + cfCacheStatus);
             const urls = await findStaticAssetsUrls();
             // console.log({ urls });
-            urls.push(current);
+
+            urls.push(removeQueryParams(current,['debug','nocache','test']));
             fetch('https://cloudflare.coworking-metz.fr/hit', {
                 method: 'POST',
                 headers: {
@@ -27,9 +28,9 @@ function doScan() {
                 body: JSON.stringify({ urls })
             });
 
-        } else {
-            console.log('cf.js - nothing to do');
-        }
+        // } else {
+        //     console.log('cf.js - nothing to do');
+        // }
     }).catch(error => {
         console.error('cf.js - Error fetching headers:', error);
     });
