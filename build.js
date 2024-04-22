@@ -20,6 +20,7 @@ fs.readFile('README.md', 'utf8', (err, markdown) => {
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
 />
+<script type="text/javascript" defer async src="https://cloudflare.coworking-metz.fr/cf.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CloudFlare Hit & Scan</title>
 </head>
