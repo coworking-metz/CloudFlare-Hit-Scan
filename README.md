@@ -1,6 +1,6 @@
 # Cloudflare Hit & Scan
 
-Nativement, CloudFalre ne permet pas une purge sur une sélection d'urls via un sélecteur de type '*mot*'.
+Nativement, CloudFlare ne permet pas une purge sur une sélection d'urls via un sélecteur de type '*mot*'.
 
 Cet outil permet de créer un inventaire des urls qui sont en cache dans cloudflare. Le but est de pouvoir ensuite sélectionner une partie de ses urls pour en demander la purge, sans avoir à purger toute la zone. 
 
